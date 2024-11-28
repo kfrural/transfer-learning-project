@@ -1,18 +1,21 @@
 import os
 import zipfile
-import urllib.request
+import shutil
+from kaggle.api.kaggle_api_extended import KaggleApi
 
-def download_and_extract_data():
-    url = "URL_TO_YOUR_DATASET"  # Substitua pela URL do seu dataset
-    data_dir = "data/"
-    
-    if not os.path.exists(data_dir):
-        os.makedirs(data_dir)
-    
-    filename = url.split("/")[-1]
-    filepath = os.path.join(data_dir, filename)
+def download_and_extract_data(dataset_name, target_dir):
+    if not os.path.exists(target_dir):
+        os.makedirs(target_dir)
 
-    urllib.request.urlretrieve(url, filepath)
+    api = KaggleApi()
+    api.authenticate()
 
-    with zipfile.ZipFile(filepath, 'r') as zip_ref:
-        zip_ref.extractall(data_dir)
+    dataset_path = f"{dataset_name}.zip"
+    api.dataset_download_files(dataset_name, path=target_dir, unzip=True)
+
+    print(f"Dados extraídos para {target_dir}")
+
+dataset_name = 'cats-vs-dogs'
+target_dir = 'data/'
+
+download_and_extract_data(dataset_name, target_dir)
