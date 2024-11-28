@@ -1,92 +1,91 @@
 # Transfer Learning Project
 
-Este projeto demonstra como aplicar **Transfer Learning** para classificar imagens usando um modelo pré-treinado, especificamente o **MobileNetV2**, com o objetivo de classificar categorias de imagens em um conjunto de dados fornecido.
+This project demonstrates how to apply **Transfer Learning** for image classification using a pre-trained model, specifically **MobileNetV2**, to classify image categories in a provided dataset.
 
-## Estrutura do Projeto
+## Project Structure
 
-A estrutura do projeto é organizada da seguinte maneira:
+The project structure is organized as follows:
 
-- `data/`: Contém os dados de treinamento e validação.
-    - `train/`: Diretório com imagens de treinamento, divididas por categoria.
-    - `validation/`: Diretório com imagens de validação, divididas por categoria.
-- `src/`: Contém os scripts principais de código.
-    - `model.py`: Definição do modelo de Transfer Learning.
-    - `data_utils.py`: Funções para carregar e processar os dados.
-    - `main.py`: Script principal para treinar o modelo e visualizar os resultados.
-- `utils/`: Funções auxiliares para download de dados e plotagem de resultados.
-    - `download_data.py`: Script para baixar e extrair o conjunto de dados.
-    - `plot_results.py`: Funções para visualizar os gráficos de desempenho durante o treinamento.
-- `requirements.txt`: Lista de dependências necessárias para rodar o projeto.
-- `.gitignore`: Arquivos e diretórios que não serão versionados, como dados e caches.
-- `README.md`: Documentação do projeto.
+- `data/`: Contains training and validation data.
+    - `train/`: Directory with training images, divided by category.
+    - `validation/`: Directory with validation images, divided by category.
+- `src/`: Contains the main code scripts.
+    - `model.py`: Definition of the Transfer Learning model.
+    - `data_utils.py`: Functions for loading and processing data.
+    - `main.py`: Main script for training the model and visualizing results.
+- `utils/`: Helper functions for data download and result plotting.
+    - `download_data.py`: Script to download and extract the dataset.
+    - `plot_results.py`: Functions to visualize performance graphs during training.
+- `requirements.txt`: List of dependencies required to run the project.
+- `.gitignore`: Files and directories that will not be versioned, such as data and caches.
+- `README.md`: Project documentation.
 
-## Pré-Requisitos
+## Prerequisites
 
-Certifique-se de ter os seguintes pré-requisitos instalados no seu sistema:
+Make sure you have the following prerequisites installed on your system:
 
 - Python 3.x
-- Pip (para gerenciar pacotes)
+- Pip (for managing packages)
 
-## Instalação
+## Installation
 
-1. **Clone este repositório:**
+1. **Clone this repository:**
 
 ```bash
-git clone https://github.com/seu-usuario/transfer-learning-project.git
+git clone https://github.com/your-username/transfer-learning-project.git
 cd transfer-learning-project
 ```
 
-2. **Crie e ative um ambiente virtual:**
+2. **Create and activate a virtual environment:**
 
 ```bash
 python -m venv venv
-source venv/bin/activate  # no Windows use venv\Scripts\activate
+source venv/bin/activate  # On Windows, use venv\Scripts\activate
 ```
 
-3. **Instale as dependências do projeto:**
+3. **Install the project dependencies:**
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Baixar e Preparar os Dados
+## Download and Prepare the Data
 
-1. **Baixe e extraia os dados:**
+1. **Download and extract the data:**
 
-O script `download_data.py` pode ser utilizado para baixar e extrair os dados diretamente de uma URL fornecida.
+The `download_data.py` script can be used to download and extract the data directly from a provided URL.
 
-- Modifique o link da variável `url` no arquivo `download_data.py` para a URL do seu conjunto de dados.
-- Depois, execute o script para baixar os dados:
+- Modify the `url` variable in the `download_data.py` file to the URL of your dataset.
+- Then, run the script to download the data:
 
 ```bash
 python utils/download_data.py
 ```
 
-2. **Organize os dados:**
+2. **Organize the data:**
 
-Certifique-se de que as imagens estejam organizadas em diretórios de treinamento (`train/`) e validação (`validation/`), conforme a estrutura esperada.
+Make sure the images are organized into the expected directory structure, with training (`train/`) and validation (`validation/`) directories.
 
-## Treinamento do Modelo
+## Model Training
 
-1. **Execute o script principal para treinar o modelo:**
+1. **Run the main script to train the model:**
 
 ```bash
 python src/main.py
 ```
 
-Isso carregará os dados de treinamento e validação, treinará o modelo usando Transfer Learning com MobileNetV2 e exibirá gráficos de desempenho (loss e accuracy) durante o treinamento.
+This will load the training and validation data, train the model using Transfer Learning with MobileNetV2, and display performance graphs (loss and accuracy) during the training process.
 
-## Visualização de Resultados
+## Result Visualization
 
-Durante o treinamento, gráficos serão gerados automaticamente para mostrar a evolução do **Loss** e da **Accuracy** para o conjunto de treinamento e validação.
+During training, graphs will be automatically generated to show the evolution of **Loss** and **Accuracy** for both the training and validation sets.
 
-## Estrutura do Modelo
+## Model Architecture
 
-O modelo usa o **MobileNetV2** como base, removendo a camada final (topo) e adicionando novas camadas para adaptação ao seu problema específico. O modelo é compilado usando o otimizador **Adam** e a função de perda **categorical_crossentropy**.
+The model uses **MobileNetV2** as a base, removing the final layer (top) and adding new layers to adapt to your specific problem. The model is compiled using the **Adam** optimizer and the **categorical_crossentropy** loss function.
 
-## Contribuições
+## Contributions
 
-Sinta-se à vontade para contribuir com o projeto! Você pode:
-- Abrir issues para sugerir melhorias ou relatar bugs.
-- Fazer um fork e enviar um pull request com suas contribuições.
-
+Feel free to contribute to the project! You can:
+- Open issues to suggest improvements or report bugs.
+- Fork the repository and submit a pull request with your contributions.
