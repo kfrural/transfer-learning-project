@@ -1,47 +1,32 @@
 import tensorflow as tf
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
-def load_data(train_dir, validation_dir, img_size=(224, 224), batch_size=32):
-    train_datagen = ImageDataGenerator(rescale=1./255,
-                                       shear_range=0.1,
-                                       zoom_range=0.1,
-                                       horizontal_flip=True)
-    
+def load_data(train_dir, validation_dir):
+    train_datagen = ImageDataGenerator(
+        rescale=1./255,
+        rotation_range=40,
+        width_shift_range=0.2,
+        height_shift_range=0.2,
+        shear_range=0.2,
+        zoom_range=0.2,
+        horizontal_flip=True,
+        fill_mode='nearest'
+    )
+
     validation_datagen = ImageDataGenerator(rescale=1./255)
-    
+
     train_generator = train_datagen.flow_from_directory(
         train_dir,
-        target_size=img_size,
-        batch_size=batch_size,
-        class_mode='categorical'
+        batch_size=32,
+        class_mode='categorical',
+        target_size=(224, 224)
     )
-    
+
     validation_generator = validation_datagen.flow_from_directory(
         validation_dir,
-        target_size=img_size,
-        batch_size=batch_size,
-        class_mode='categorical'
+        batch_size=32,
+        class_mode='categorical',
+        target_size=(224, 224)
     )
-    
+
     return train_generator, validation_generator
-
-def plot_results(history):
-    import matplotlib.pyplot as plt
-    
-    plt.figure(figsize=(12, 5))
-    plt.plot(range(len(history.history['loss'])), history.history['loss'], label='Training Loss')
-    plt.plot(range(len(history.history['val_loss'])), history.history['val_loss'], label='Validation Loss')
-    plt.legend()
-    plt.title('Model Performance')
-    plt.xlabel('Epochs')
-    plt.ylabel('Loss')
-    plt.show()
-
-    plt.figure(figsize=(12, 5))
-    plt.plot(range(len(history.history['accuracy'])), history.history['accuracy'], label='Training Accuracy')
-    plt.plot(range(len(history.history['val_accuracy'])), history.history['val_accuracy'], label='Validation Accuracy')
-    plt.legend()
-    plt.title('Model Accuracy')
-    plt.xlabel('Epochs')
-    plt.ylabel('Accuracy')
-    plt.show()
